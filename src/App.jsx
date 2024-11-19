@@ -58,7 +58,7 @@ const App = () => {
       <form onSubmit={handleSubmit}>
         <table className='w-[80%] mx-auto mt-2 text-justify border border-gray-500'>
           {/* Table Heading Part */}
-          <thead className='uppercase bg-gray-400 border dark:text-white p-2'>
+          <thead className='uppercase bg-gray-400 border border-gray-500 dark:text-white p-2'>
             <tr>
               <th>S.No</th>
               <th>Item Name</th>
@@ -72,12 +72,9 @@ const App = () => {
           <tbody>
             {rows.map((row, index) => {
               return (
-                <tr
-                  key={row.id}
-                  className='hover:bg-gray-100 font-semibold relative'
-                >
-                  <td>{index + 1}</td>
-                  <td>
+                <tr key={row.id}>
+                  <td className='border border-gray-600  '>{index + 1}</td>
+                  <td className='border border-gray-600  '>
                     <select
                       name='itemName'
                       className='outline-none p-1 hover:bg-gray-100'
@@ -88,7 +85,7 @@ const App = () => {
                     </select>
                   </td>
 
-                  <td>
+                  <td className='border border-gray-600  '>
                     <input
                       type='number'
                       max={9000}
@@ -99,7 +96,7 @@ const App = () => {
                     />
                   </td>
 
-                  <td>
+                  <td className='border border-gray-600  '>
                     <input
                       type='number'
                       max={9000}
@@ -110,7 +107,7 @@ const App = () => {
                     />
                   </td>
 
-                  <td>
+                  <td className='border border-gray-600  '>
                     <input
                       type='number'
                       max={9000}
@@ -124,6 +121,24 @@ const App = () => {
               );
             })}
           </tbody>
+          <tfoot>
+            <tr className='uppercase bg-gray-400 border font-bold border-gray-500 dark:text-white p-2'>
+              <td className='border border-gray-600   '></td>
+              <td className='border border-gray-600   '></td>
+              <td className='border border-gray-600   '>
+                {/* {rows[0].rate + rows[1].rate} */}
+                rate
+              </td>
+              <td className='border border-gray-600   '>
+                {/* {rows[0].quantity + rows[1].quantity} */}
+                quantity
+              </td>
+              <td className='border border-gray-600   '>
+                {/* {rows[0].total + rows[1].total} */}
+                total
+              </td>
+            </tr>
+          </tfoot>
         </table>
 
         <button className='mt-4 ml-2 p-2 bg-gray-500  hover:bg-gray-700 text-white rounded print:hidden'>
