@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Heading from './components/Heading';
 import Content from './components/Content';
 import SelectOption from './components/SelectOption';
+import numWords from 'num-words';
 
 const App = () => {
   // Initial state for rows
@@ -44,6 +45,9 @@ const App = () => {
     <div className='w-[95%] text-center'>
       {/* Heading */}
       <Heading />
+
+      {/* Num-word Usage */}
+      <p className='capitalize'>{numWords(90976)}</p>
 
       {/* Content */}
       <Content
