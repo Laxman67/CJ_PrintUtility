@@ -1,18 +1,16 @@
-import React from 'react';
+import { useContext } from 'react';
+import { rowContext } from '../context/rowContext';
 
-const Content = ({
-  name,
-  nameTitle,
-  relationOf,
-  relationTitle,
-  address,
-  rate,
-}) => {
+const Content = () => {
+  const { rate, customerData } = useContext(rowContext);
+  const { name, nameTitle, relationOf, relationTitle, address, relationAbrr } =
+    customerData;
+
   return (
     <div className='text-1xl w-[80%] mx-auto mt-7 text-justify'>
       It is certified that{' '}
       <strong>
-        {nameTitle}. {name} S/O {relationTitle}. {relationOf}
+        {nameTitle}. {name} {relationAbrr} {relationTitle}. {relationOf}
       </strong>
       , Resident of Vill: - {address} has shown me some old gold ornaments.{' '}
       <strong>

@@ -1,39 +1,16 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import Heading from './components/Heading';
 import Content from './components/Content';
 import SelectOption from './components/SelectOption';
 import numWords from 'num-words';
+import { rowContext } from './context/rowContext';
 
 const App = () => {
-  // Initial state for rows
-  const [rows, setRows] = useState([
-    { id: 1, itemName: '', rate: 0, quantity: 0, total: 0 },
-  ]);
+  const { handleInputChange, rows, rate, addRow } = useContext(rowContext);
 
-  // Function to handle change in row values (itemName, rate, quantity)
-  const handleInputChange = (e, index, field) => {
-    const updatedRows = [...rows]; // spread all the data
-    updatedRows[index][field] = e.target.value; // try to update field based on filed name
-
-    // If rate or quantity changes, recalculate the total for that row
-    if (field === 'rate' || field === 'quantity') {
-      updatedRows[index].total =
-        updatedRows[index].rate * updatedRows[index].quantity;
-    }
-
-    setRows(updatedRows);
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(rows);
-  };
-
-  // Function to add a new row
-  const addRow = () => {
-    setRows([
-      ...rows,
-      { id: rows.length + 1, itemName: '', rate: 0, quantity: 0, total: 0 },
-    ]);
   };
 
   // Print Form
@@ -50,25 +27,18 @@ const App = () => {
       <p className='capitalize'>{numWords(90976)}</p>
 
       {/* Content */}
-      <Content
-        name='Ansh'
-        nameTitle='Mrs'
-        relationOf='Modei Sarkar'
-        relationTitle='Mrs'
-        address='Near Guru Dwara , Kand Sahib , Batala, Gurdaspur'
-        rate='7000'
-      />
+      <Content />
 
       <form onSubmit={handleSubmit}>
         <table className='w-[80%] mx-auto mt-2 text-justify border border-gray-500'>
           {/* Table Heading Part */}
           <thead className='uppercase bg-gray-400 border border-gray-500 dark:text-white p-2'>
             <tr>
-              <th>S.No</th>
-              <th>Item Name</th>
-              <th>Rate</th>
-              <th>Quantity</th>
-              <th>Total</th>
+              <th className='border border-gray-600 text-center'>S.No</th>
+              <th className='border border-gray-600 text-center'>Item Name</th>
+              <th className='border border-gray-600 text-center'>Rate</th>
+              <th className='border border-gray-600 text-center'>Quantity</th>
+              <th className='border border-gray-600 text-center'>Total</th>
             </tr>
           </thead>
 
@@ -77,7 +47,9 @@ const App = () => {
             {rows.map((row, index) => {
               return (
                 <tr key={row.id}>
-                  <td className='border border-gray-600  '>{index + 1}</td>
+                  <td className='border border-gray-600 font-semibold text-center   '>
+                    {index + 1}
+                  </td>
                   <td className='border border-gray-600  '>
                     <select
                       name='itemName'
@@ -92,10 +64,11 @@ const App = () => {
                   <td className='border border-gray-600  '>
                     <input
                       type='number'
-                      max={9000}
+                      value={rate}
                       min={0}
-                      value={row.rate}
+                      max={rate}
                       onChange={(e) => handleInputChange(e, index, 'rate')}
+                      readOnly
                       className='outline-none p-1 hover:bg-gray-100'
                     />
                   </td>
@@ -103,6 +76,7 @@ const App = () => {
                   <td className='border border-gray-600  '>
                     <input
                       type='number'
+                      step='0.001' // Allow three decimal places
                       max={9000}
                       min={0}
                       value={row.quantity}
@@ -117,6 +91,7 @@ const App = () => {
                       max={9000}
                       min={0}
                       value={row.total}
+                      onChange={(e) => handleInputChange(e, index, 'total')}
                       className='outline-none p-1 hover:bg-gray-100'
                       readOnly
                     />

@@ -1,6 +1,6 @@
 const SelectOption = () => {
   return (
-    <div className='outline-none p-1 hover:bg-gray-100 w-full font-semibold'>
+    <>
       <option value=''>Select</option>
       <option value='gents_ring'>Gents Ring</option>
       <option value='bangle'>Bangle</option>
@@ -13,7 +13,7 @@ const SelectOption = () => {
       <option value='pendant'>Pendant Sett</option>
       <option value='nose_pin'>Nose Pin</option>
       <option value='anklet'>Anklet</option>
-    </div>
+    </>
   );
 };
 
