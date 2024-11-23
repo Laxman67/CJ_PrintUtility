@@ -2,11 +2,11 @@ import { useContext } from 'react';
 import Heading from './components/Heading';
 import Content from './components/Content';
 import SelectOption from './components/SelectOption';
-import numWords from 'num-words';
+
 import { rowContext } from './context/rowContext';
 
 const App = () => {
-  const { handleInputChange, rows, rate, addRow } = useContext(rowContext);
+  const { handleInputChange, rows, rate, addRow ,delRow} = useContext(rowContext);
   console.log(rows);
   
 
@@ -25,8 +25,7 @@ const App = () => {
       {/* Heading */}
       <Heading />
 
-      {/* Num-word Usage */}
-      <p className='capitalize'>{numWords(90976)}</p>
+
 
       {/* Content */}
       <Content />
@@ -126,6 +125,12 @@ const App = () => {
         <button className='mt-4 ml-2 p-2 bg-gray-500  hover:bg-gray-700 text-white rounded print:hidden'>
           Submit Certifcate
         </button>
+        <button
+        className='mt-4 ml-2 p-2 bg-gray-500  hover:bg-gray-700 text-white rounded print:hidden'
+        onClick={() => printCertificate()}
+      >
+        Print Certifcate
+      </button>
       </form>
 
       <button
@@ -135,11 +140,14 @@ const App = () => {
         Add Row
       </button>
       <button
-        className='mt-4 ml-2 p-2 bg-gray-500  hover:bg-gray-700 text-white rounded print:hidden'
-        onClick={() => printCertificate()}
+className={`mt-4 p-2 bg-red-600 hover:bg-red-900 ml-2 text-white rounded print:hidden ${rows && rows.length === 1 ? " hidden" : ""}`}
+
+        onClick={delRow}
+        disabled={rows.length===1?true:false}
       >
-        Print Certifcate
+        Delete Row
       </button>
+     
     </div>
   );
 };

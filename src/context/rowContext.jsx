@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 
 export const rowContext = createContext();
 
@@ -8,18 +8,24 @@ export const Context = ({ children }) => {
 
   // Customer Data
   const [customerData, setCustomerData] = useState({
-    name: 'Laxman',
-    nameTitle: 'Mr',
-    relationAbrr: 'S/O',
-    relationOf: 'Amarnath',
-    relationTitle: 'Mr',
-    address: 'Near Gems School , Batala',
+    name: "Laxman",
+    nameTitle: "Mr",
+    relationAbrr: "S/O",
+    relationOf: "Amarnath",
+    relationTitle: "Mr",
+    address: "Near Gems School , Batala",
   });
+
+
 
   // Initial state for rows
   const [rows, setRows] = useState([
-    { id: 1, itemName: '', rate: 7200, quantity: 0, total: 0 },
+    { id: 1, itemName: "", rate: 7200, quantity: 0, total: 0 },
   ]);
+
+  // Bil Total
+let total = rows.reduce((acc,curr)=>curr.total+0)
+const [billTotal, setBillTotal] = useState(total)
 
   // Function to handle change in row values (itemName, rate, quantity)
   const handleInputChange = (e, index, field) => {
@@ -28,7 +34,7 @@ export const Context = ({ children }) => {
     updatedRows[index][field] = e.target.value; // Update the field
 
     // If rate or quantity is updated, recalculate the total
-    if (field === 'rate' || field === 'quantity') {
+    if (field === "rate" || field === "quantity") {
       updatedRows[index].total =
         updatedRows[index].rate * updatedRows[index].quantity;
     }
@@ -40,8 +46,12 @@ export const Context = ({ children }) => {
   const addRow = () => {
     setRows([
       ...rows,
-      { id: rows.length + 1, itemName: '', rate, quantity: 0, total: 0 }, // Default rate from state
+      { id: rows.length + 1, itemName: "", rate, quantity: 0, total: 0 }, // Default rate from state
     ]);
+  };
+
+  const delRow = () => {
+    setRows(rows.filter((row, index) => index !== rows.length - 1));
   };
 
   return (
@@ -55,6 +65,8 @@ export const Context = ({ children }) => {
         customerData,
         setCustomerData,
         addRow,
+        delRow,
+        billTotal
       }}
     >
       {children}

@@ -4,5 +4,6 @@ const arr = [
     { id: 3, itemName: 'unknown item', rate: 7200, quantity: 3.0, total: 200 },
     { id: 4, itemName: 'no item', rate: 7200, quantity: 0, total: 1 }
 ];
+arr[0]
+console.log(arr.length);
 
- console.log();
