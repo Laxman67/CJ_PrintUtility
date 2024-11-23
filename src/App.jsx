@@ -7,6 +7,8 @@ import { rowContext } from './context/rowContext';
 
 const App = () => {
   const { handleInputChange, rows, rate, addRow } = useContext(rowContext);
+  console.log(rows);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -105,16 +107,17 @@ const App = () => {
               <td className='border border-gray-600   '></td>
               <td className='border border-gray-600   '></td>
               <td className='border border-gray-600   '>
-                {/* {rows[0].rate + rows[1].rate} */}
-                rate
+               {rate}
+               
               </td>
               <td className='border border-gray-600   '>
-                {/* {rows[0].quantity + rows[1].quantity} */}
-                quantity
+              {rows.reduce((acc,curr)=>acc+Number(curr.quantity),0)}
+               
               </td>
               <td className='border border-gray-600   '>
                 {/* {rows[0].total + rows[1].total} */}
-                total
+                {rows.reduce((acc,curr)=>acc+curr.total,0)}
+               
               </td>
             </tr>
           </tfoot>
