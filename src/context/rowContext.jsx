@@ -8,7 +8,7 @@ export const Context = ({ children }) => {
 
   // Customer Data
   const [customerData, setCustomerData] = useState({
-    name: "Laxman",
+    name: "Shiva",
     nameTitle: "Mr",
     relationAbrr: "S/O",
     relationOf: "Amarnath",

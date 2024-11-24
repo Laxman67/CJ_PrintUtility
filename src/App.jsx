@@ -101,14 +101,14 @@ const App = () => {
             })}
           </tbody>
           <tfoot>
-            <tr className="uppercase bg-gray-400 border font-bold border-gray-500 dark:text-white p-2">
+            <tr className="uppercase bg-gray-400 border font-bold border-gray-500 dark:text-white p-2 ">
+              <td className="border border-gray-600  "></td>
               <td className="border border-gray-600   "></td>
-              <td className="border border-gray-600   "></td>
-              <td className="border border-gray-600   ">{rate}</td>
-              <td className="border border-gray-600   ">
+              <td className="border border-gray-600  pl-1  ">{rate}</td>
+              <td className="border border-gray-600  pl-1 ">
                 {rows.reduce((acc, curr) => acc + Number(curr.quantity), 0)}
               </td>
-              <td className="border border-gray-600   ">
+              <td className="border border-gray-600  pl-1 ">
                 {/* {rows[0].total + rows[1].total} */}
                 {rows.reduce((acc, curr) => acc + curr.total, 0)}
               </td>
